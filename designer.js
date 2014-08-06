@@ -3,16 +3,21 @@
     Text.setWidth(50);
     Text.setHeight(16);
 
-    Text.setPanelStyle({
-        fClass: true, //This property is for the design panel
-        text: true,
-        background: true,
-        border: true,
-        sizePosition: true,
-        label: true,
-        textShadow: true,
-        dropShadow: true,
-        innerShadow: true,
-        disabled: ['border-radius']
+    Text.customizeProperty('value', { multiline: true });
+
+    var showUrl = function() {
+        if(this.url() || this.url.boundDatasource()) {
+            this.urlTarget.show();
+        } else {
+            this.urlTarget.hide();
+        }
+    };
+
+    Text.doAfter('init', function() {
+        showUrl.call(this);
+        this.url.onChange(showUrl);
+        this.subscribe('datasourceBindingChange', 'url', showUrl, this);
     });
+
+    Text.addLabel({ defaultValue: '' });
 });
