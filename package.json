@@ -1,11 +1,23 @@
 {
     "name": "Text",
+    "studioName": "Text",
+    "category": "Custom Widgets",
+    "iconPath": "/icons/widget.png",
     "version": "1.0.0",
+    "author": "Stéphane Puybareau",
+    "version": "1.0.0",
+    "copyright": "(c) 2014 Widget Developer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Puyb4d/Text.git"
+    },
+    "keywords": ["wakanda", "widget"],
+    "engines": {"wakanda": ">= 9"},
+    "license": "MIT",
     "loadDependencies": [
         {"id": "Widget_V2"},
         {"id": "Text/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "Text/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "Text/icons/widget.png", "studioOnly": true, "path": "WIDGETS_CUSTOM", "type":"icon"},
         {"id": "Text/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
     ]
 }
