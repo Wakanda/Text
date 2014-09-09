@@ -30,7 +30,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 'waf-overflow-y': 'Vertical',
                 'waf-overflow-xy': 'Both'
             },
-            defaultValue: function() {
+            defaultValueCallback: function() {
                 var r = /\bwaf-overflow-(x|y|xy)\b/.exec(this.node.className);
                 return r ? r[0] : '';
             },
