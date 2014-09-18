@@ -22,7 +22,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             values: ['_blank', '_self'],
             bindable: false
         }),
-        overflow: Widget.property({
+    /*    overflow: Widget.property({
             type: 'enum',
             values: {
                 '': 'Hidden',
@@ -35,7 +35,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 return r ? r[0] : '';
             },
             bindable: false
-        }),
+        }), */
         plainText: Widget.property({
             type: 'boolean',
             defaultValue: true,
