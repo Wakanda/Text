@@ -1,15 +1,6 @@
 WAF.define('Text', ['waf-core/widget'], function(Widget) {
     "use strict";
 
-    var setOverflow = function() {
-        this.removeClass('waf-overflow-x');
-        this.removeClass('waf-overflow-y');
-        this.removeClass('waf-overflow-xy');
-        if(this.overflow()) {
-            this.addClass(this.overflow());
-        }
-    };
-
     var Text = Widget.create('Text', {
         value: Widget.property({
             defaultValueCallback: function() {
@@ -22,20 +13,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             values: ['_blank', '_self'],
             bindable: false
         }),
-    /*    overflow: Widget.property({
-            type: 'enum',
-            values: {
-                '': 'Hidden',
-                'waf-overflow-x': 'Horizontal',
-                'waf-overflow-y': 'Vertical',
-                'waf-overflow-xy': 'Both'
-            },
-            defaultValueCallback: function() {
-                var r = /\bwaf-overflow-(x|y|xy)\b/.exec(this.node.className);
-                return r ? r[0] : '';
-            },
-            bindable: false
-        }), */
         plainText: Widget.property({
             type: 'boolean',
             defaultValue: true,
@@ -62,9 +39,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                     }
                 }
             }.bind(this));
-
-            setOverflow.call(this);
-            this.overflow.onChange(setOverflow);
         }
     });
 
