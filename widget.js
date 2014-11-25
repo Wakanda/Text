@@ -41,6 +41,9 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             defaultValue: 'Hidden',
             bindable: false
         }),
+        addTabIndex : function() {
+
+        },
         render: function(value) {
             value = value || this.value();
             value = WAF.utils.formatString(value,this.format());
