@@ -6,31 +6,36 @@
     Text.addEvents({ 
         'name':'action' 
     },{ 
-        'name':'click', 
-        'category':'Mouse Events' 
-    },{ 
         'name':'dblclick', 
+        'description':'On Double Click',
         'category':'Mouse Events'
     },{ 
         'name':'mousedown', 
+        'description':'On Mouse Down',
         'category':'Mouse Events'
     },{ 
         'name':'mouseout',
+        'description':'On Mouse Out',
          'category':'Mouse Events'
     },{ 
         'name':'mouseover',
+        'description':'On Mouse Over',
         'category':'Mouse Events'
     },{ 
         'name':'mouseup',
+        'description':'On Mouse Up',
         'category':'Mouse Events'
     },{ 
         'name':'touchstart',
+        'description':'On Touch Start',
         'category':'Touch Events'
     },{ 
         'name':'touchend',
+        'description':'On Touch End',
         'category':'Touch Events'
     },{ 
         'name':'touchcancel',
+        'description':'On Touch Cancel',
         'category':'Touch Events'
     });
 
@@ -65,6 +70,11 @@
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
     });
     
+    Text.customizeProperty('plainText', {title: 'Plain Text'});
+    Text.customizeProperty('url', {title: 'URL'});
+    Text.customizeProperty('urlTarget', {title: 'Target'});
+    Text.customizeProperty('autoResize', {title: 'Auto Resize'});
+
     Text.studioOnResize(function(){
         this.autoResize(false);
     });

@@ -103,6 +103,10 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             };
         },
         init: function() {
+            this.style({
+                'box-sizing' : '',
+                'cursor' : ''
+            });
             this.render();
             this.autoResizer();
             this.setOverflow();
