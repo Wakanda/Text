@@ -3,12 +3,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
 
     var Text = Widget.create('Text', {
         value: Widget.property({
-            defaultValueCallback: function(plainText) {
-                if(plainText){
-                    return this.node.textContent;
-                }
-                return this.node.innerHTML;
-            }
+            type: 'string'
         }),
         format: Widget.property({
             type: 'string',
