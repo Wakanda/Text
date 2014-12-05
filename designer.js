@@ -1,10 +1,14 @@
 (function(Text) {
     "use strict";
-    Text.setWidth(50);
-    Text.setHeight(16);
+    Text.setWidth(80);
+    Text.setHeight(20);
 
     Text.addEvents({ 
         'name':'action' 
+    },{ 
+        'name':'click', 
+        'category':'Mouse Events',
+        'description':'On Click'
     },{ 
         'name':'dblclick', 
         'description':'On Double Click',
@@ -70,13 +74,24 @@
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
     });
     
-    Text.customizeProperty('plainText', {title: 'Plain Text'});
+    Text.customizeProperty('plainText', {title: 'Plain text'});
     Text.customizeProperty('url', {title: 'URL'});
     Text.customizeProperty('urlTarget', {title: 'Target'});
-    Text.customizeProperty('autoResize', {title: 'Auto Resize'});
+    Text.customizeProperty('autoResize', {title: 'Auto resize'});
 
     Text.studioOnResize(function(){
         this.autoResize(false);
+    });
+
+    function showValue(){
+        if(this.value.boundDatasource() && this.value.boundDatasource().datasourceName){
+            this.value('['+this.value.boundDatasource()['datasourceName']+'.'+this.value.boundDatasource()['attribute']+']')
+        }else{
+            this.clear();
+        }
+    }
+    Text.doAfter('init', function() {
+        this.subscribe('datasourceBindingChange','value', showValue, this);
     });
 
 });

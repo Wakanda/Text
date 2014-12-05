@@ -20,11 +20,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             values: ['_blank', '_self'],
             bindable: false
         }),
-        plainText: Widget.property({
-            type: 'boolean',
-            defaultValue: true,
-            bindable: false
-        }),
         scrollbar: Widget.property({
             type: 'enum',
             values: {
@@ -36,6 +31,12 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             defaultValue: 'Hidden',
             bindable: false
         }),
+
+        plainText: Widget.property({
+            type: 'boolean',
+            defaultValue: true,
+            bindable: false
+        }),        
         addTabIndex : function() {
 
         },
