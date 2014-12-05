@@ -68,10 +68,19 @@
         }
     };
 
+    function showValue(){
+        var dsValue = this.value.boundDatasource()
+        if(dsValue && dsValue.datasourceName){
+            this.value('['+dsValue+']');
+        }
+    }
+    
     Text.doAfter('init', function() {
         showUrl.call(this);
+        showValue.call(this);
         this.url.onChange(showUrl);
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
+        this.subscribe('datasourceBindingChange','value', showValue, this);
     });
     
     Text.customizeProperty('plainText', {title: 'Plain text'});
@@ -81,17 +90,6 @@
 
     Text.studioOnResize(function(){
         this.autoResize(false);
-    });
-
-    function showValue(){
-        if(this.value.boundDatasource() && this.value.boundDatasource().datasourceName){
-            this.value('['+this.value.boundDatasource()['datasourceName']+'.'+this.value.boundDatasource()['attribute']+']')
-        }else{
-            this.clear();
-        }
-    }
-    Text.doAfter('init', function() {
-        this.subscribe('datasourceBindingChange','value', showValue, this);
     });
 
 });
