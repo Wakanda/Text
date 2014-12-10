@@ -5,15 +5,20 @@
     "type": "widget",
     "iconPath": "/icons/widget.png",
     "version": "1.0.0",
-    "author": "Stéphane Puybareau",
-    "copyright": "(c) 2014 Widget Developer",
+    "author": "4D SAS",
+    "contributors": [
+        "Stéphane Puybareau",
+        "Sébastien Lombard",
+        "Jonathan Argentiero"
+    ],
+    "copyright": "(c) 2014 4D SAS",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Puyb4d/Text.git"
+        "url": "https://github.com/Wakanda/Text.git"
     },
     "keywords": ["wakanda", "widget"],
     "engines": {
-        "wakanda": ">= 10"
+        "wakanda": ">= 11"
     },
     "license": "MIT",
     "externalWidgets": [],

@@ -3,7 +3,8 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
 
     var Text = Widget.create('Text', {
         value: Widget.property({
-            type: 'string'
+            type: 'string',
+            defaultValue : 'Text'
         }),
         format: Widget.property({
             type: 'string',
