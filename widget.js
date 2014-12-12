@@ -37,10 +37,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             type: 'boolean',
             defaultValue: true,
             bindable: false
-        }),        
-        addTabIndex : function() {
-
-        },
+        }),                
         render: function(value) {
             value = value || this.value();
             value = WAF.utils.formatString(value,this.format());
@@ -122,5 +119,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         }
     });
 
+    Text.addTabIndex();
+    
     return Text;
 });
