@@ -4,25 +4,33 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
     var Text = Widget.create('Text', {
         value: Widget.property({
             type: 'string',
-            defaultValue : 'Text'
+            description: 'Value to display',
+            defaultValue: 'Text'
         }),
         format: Widget.property({
             type: 'string',
+            description: 'Format for the Value',
             bindable: false
         }),
         autoResize: Widget.property({
             type: 'boolean',
+            description: 'Automatically resize the widget',
             defaultValue: true,
             bindable: false
         }),
-        url: Widget.property({ type: 'string' }),
+        url: Widget.property({
+            type: 'string',
+            description: 'URL to include on Value'
+        }),
         urlTarget: Widget.property({
             type: 'enum',
+            description: 'Location where to open the URL',
             values: ['_blank', '_self'],
             bindable: false
         }),
         scrollbar: Widget.property({
             type: 'enum',
+            description: 'Display scrollbars',
             values: {
                 'hidden':  'Hidden',
                 'horizontal':  'Horizontal',
@@ -35,6 +43,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
 
         plainText: Widget.property({
             type: 'boolean',
+            description: 'Value displayed as plain text or formatted HTML text',
             defaultValue: true,
             bindable: false
         }),                
@@ -64,7 +73,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 this.style({
                     'width'     : '',
                     'height'    : '',
-                    'white-space': 'normal'
+                    'white-space': ''
                 });
             }
         },

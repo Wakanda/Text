@@ -3,6 +3,8 @@
     Text.setWidth(80);
     Text.setHeight(20);
 
+    Text.addStates('hover', 'active', 'disabled');
+    
     Text.addEvents({ 
         'name':'action' 
     },{ 
@@ -45,7 +47,7 @@
 
     Text.customizeProperty('value', { multiline: true });
 
-    Text.addLabel({ defaultValue: '' });
+    Text.addLabel({ defaultValue: '', description: 'Label for widget' });
 
     Text.setPanelStyle({
         'fClass': true, //This property is for the design panel
@@ -81,6 +83,9 @@
         this.url.onChange(showUrl);
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
         this.subscribe('datasourceBindingChange','value', showValue, this);
+
+        // disable click
+        $(this.node).off('click', this._handleClick);
     });
     
     Text.customizeProperty('plainText', {title: 'Plain text'});
