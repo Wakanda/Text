@@ -74,8 +74,6 @@
         var dsValue = this.value.boundDatasource();
         if(dsValue && dsValue.datasourceName){
             this.value('['+dsValue+']');
-        }else if(!dsValue){
-            this.value('');
         }
     }
     
