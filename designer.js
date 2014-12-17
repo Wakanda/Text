@@ -79,6 +79,8 @@
     }
     
     Text.doAfter('init', function() {
+        this._formatter = false;
+        this.render();
         showUrl.call(this);
         showValue.call(this);
         this.url.onChange(showUrl);

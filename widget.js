@@ -46,10 +46,33 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             description: 'Value displayed as plain text or formatted HTML text',
             defaultValue: true,
             bindable: false
-        }),                
+        }),    
+        getFormattedValue: function(value){
+             /*
+             * Format widget value depending on attribute format
+             */
+            var result = value;
+            var dsValue = this.value.boundDatasource();
+            if(this._formatter && this.format()){
+                var type;
+                if(dsValue && dsValue.attribute && dsValue.datasource){
+                    type = dsValue.datasource.getAttribute(dsValue.attribute).type;
+                    if(type && type == 'date'){
+                        result = WAF.utils.formatDate(value, { format : this.format() });
+                    } else if(type && type == 'number'){
+                        result = WAF.utils.formatNumber(value, { format : this.format() });
+                    } else if (type && type == 'string') {
+                        result = WAF.utils.formatString(value, this.format());
+                    }
+                } else {
+                    result = WAF.utils.formatString(value, this.format());
+                }
+            }
+            return result;
+        },
         render: function(value) {
             value = value || this.value();
-            value = WAF.utils.formatString(value,this.format());
+            value = this.getFormattedValue(value);
             if(!this.url()){
                 if(this.plainText()) {
                     this.node.textContent = value;
@@ -110,6 +133,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             };
         },
         init: function() {
+            this._formatter = true;
             this.render();
             this.autoResizer();
             this.setOverflow();
