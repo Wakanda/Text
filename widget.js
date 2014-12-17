@@ -46,29 +46,41 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             description: 'Value displayed as plain text or formatted HTML text',
             defaultValue: true,
             bindable: false
-        }),    
-        getFormattedValue: function(value){
-             /*
-             * Format widget value depending on attribute format
-             */
-            var result = value;
-            var dsValue = this.value.boundDatasource();
-            if(this._formatter && this.format()){
-                var type;
-                if(dsValue && dsValue.attribute && dsValue.datasource){
-                    type = dsValue.datasource.getAttribute(dsValue.attribute).type;
-                    if(type && type == 'date'){
-                        result = WAF.utils.formatDate(value, { format : this.format() });
-                    } else if(type && type == 'number'){
-                        result = WAF.utils.formatNumber(value, { format : this.format() });
-                    } else if (type && type == 'string') {
-                        result = WAF.utils.formatString(value, this.format());
-                    }
-                } else {
-                    result = WAF.utils.formatString(value, this.format());
-                }
+        }),   
+        getType: function() {
+            var binding = this.value.boundDatasource();
+            if(!binding || !binding.valid) {
+                return;
             }
-            return result;
+            switch(binding.datasource.getAttribute(binding.attribute).type) {
+                case "long":
+                case "number":
+                case "float":
+                case "long":
+                case "byte":
+                case "word":
+                case "long64":
+                    return 'Number';
+                case "string":
+                    return "String";
+                case "date":
+                    return "Date";
+            }
+        }, 
+        getFormattedValue: function(value){
+            if(this._formatter && this.format()){
+                if(value == null) {
+                    return '';
+                }
+                var formatter = 'format' + this.getType();
+                if (formatter in WAF.utils) {
+                    return WAF.utils[formatter](value, { format: this.format() });
+                }else{
+                    return WAF.utils.formatString(value,this.format());
+                }
+                return '' + value;
+            }
+            return value;
         },
         render: function(value) {
             value = value || this.value();
