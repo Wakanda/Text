@@ -40,7 +40,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             defaultValue: 'Hidden',
             bindable: false
         }),
-
         plainText: Widget.property({
             type: 'boolean',
             description: 'Value displayed as plain text or formatted HTML text',
@@ -50,10 +49,14 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         render: function(value) {
             value = value || this.value();
             value = WAF.utils.formatString(value,this.format());
-            if(this.plainText()) {
-                this.node.textContent = value;
-            } else {
-                this.node.innerHTML = value;
+            if(!this.url()){
+                if(this.plainText()) {
+                    this.node.textContent = value;
+                } else {
+                    this.node.innerHTML = value;
+                }
+            }else{
+                this.node.innerHTML = '<a href="'+this.url()+'" target="'+this.urlTarget()+'">'+value+'</a>';
             }
             this.autoResizer();
         },
@@ -112,19 +115,11 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
 
             this.value.onChange(function(){ this.render(); });
             this.plainText.onChange(function(){ this.render(); });
+            this.url.onChange(function(){ this.render(); });
+            this.urlTarget.onChange(function(){ this.render(); });
             this.format.onChange(function(){ this.render(); });
             this.autoResize.onChange(function(){ this.autoResizer(); });
             this.scrollbar.onChange(function(){ this.setOverflow(); });
-
-            $(this.node).on('click', function() {
-                if(this.url()) {
-                    if(this.urlTarget() === '_blank') {
-                        window.open(this.url());
-                    } else {
-                        window.location = this.url();
-                    }
-                }
-            }.bind(this));
         }
     });
 

@@ -63,6 +63,7 @@
     });
 
     var showUrl = function() {
+        $(this.node).find('a').click(function(e){ e.preventDefault(); });
         if(this.url() || this.url.boundDatasource()) {
             this.urlTarget.show();
         } else {
@@ -83,9 +84,6 @@
         this.url.onChange(showUrl);
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
         this.subscribe('datasourceBindingChange','value', showValue, this);
-
-        // disable click
-        $(this.node).off('click', this._handleClick);
     });
     
     Text.customizeProperty('plainText', {title: 'Plain text'});
