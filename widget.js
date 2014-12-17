@@ -26,6 +26,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             type: 'enum',
             description: 'Location where to open the URL',
             values: ['_blank', '_self'],
+            defaultValue: '_blank',
             bindable: false
         }),
         scrollbar: Widget.property({

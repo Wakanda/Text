@@ -84,6 +84,10 @@
         this.url.onChange(showUrl);
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
         this.subscribe('datasourceBindingChange','value', showValue, this);
+        
+        // disable click
+        $(this.node).off('click', this._handleClick);
+        $(this.node).find('a').click(function(e){ e.preventDefault(); });
     });
     
     Text.customizeProperty('plainText', {title: 'Plain text'});
