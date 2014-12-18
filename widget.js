@@ -71,10 +71,10 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             }
         }, 
         getFormattedValue: function(value){
+            if(value == null) {
+                return '';
+            }
             if(this._formatter && this.format()){
-                if(value == null) {
-                    return '';
-                }
                 var formatter = 'format' + this.getType();
                 if (formatter in WAF.utils) {
                     return WAF.utils[formatter](value, { format: this.format() });
