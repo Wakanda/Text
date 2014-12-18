@@ -92,6 +92,7 @@
         $(this.node).find('a').click(function(e){ e.preventDefault(); });
     });
     
+    Text.customizeProperty('displayValue', { display: false, sourceDisplay: false });
     Text.customizeProperty('plainText', {title: 'Plain text'});
     Text.customizeProperty('url', {title: 'URL'});
     Text.customizeProperty('urlTarget', {title: 'Target'});
