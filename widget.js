@@ -88,6 +88,9 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         render: function(value) {
             value = value || this.value();
             value = this.displayValue(this.getFormattedValue(value));
+            if(value == null){
+                value = '';
+            }
             if(!this.url()){
                 if(this.plainText()) {
                     this.node.textContent = value;
