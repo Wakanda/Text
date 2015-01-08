@@ -120,7 +120,9 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                     'height'    : 'auto',
                     'white-space': 'nowrap'
                 });
-                this.size(this.width(),this.height());
+                if(this.width() && this.height()){
+                    this.size(this.width(),this.height());
+                }
                 this.autoResize(true);
             }else{
                 this.style({
