@@ -3,7 +3,7 @@
     Text.setWidth(80);
     Text.setHeight(20);
 
-    Text.addStates('hover', 'active');
+    Text.addStates(':hover', ':active');
     
     Text.addEvents({ 
         'name':'action' 
