@@ -7,9 +7,13 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             description: 'Value to display',
             defaultValue: 'Text'
         }),
-        displayValue: Widget.property({
-            type: 'string'
-        }),
+        _displayValue : null,
+        displayValue : function(value){
+            if(arguments.length > 0){
+                this._displayValue = value;
+            }
+            return this._displayValue;
+        },
         format: Widget.property({
             type: 'string',
             description: 'Format for the Value',
@@ -95,7 +99,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         },
         render: function(value) {
             value = value || this.value();
-            value = this.displayValue(this.getFormattedValue(value));
+            value = this.displayValue(this.getFormattedValue(value)); 
             if(value == null){
                 value = '';
             }
@@ -112,6 +116,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         },
         clear: function(){
             this.value('');
+            this.displayValue('');
         },
         autoResizer: function(){
             if (this.autoResize()) {
@@ -123,6 +128,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 if(this.width() && this.height()){
                     this.size(this.width(),this.height());
                 }
+
                 this.autoResize(true);
             }else{
                 this.style({
