@@ -127,6 +127,10 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 });
                 if(this.width() && this.height()){
                     this.size(this.width(),this.height());
+                    this.style({
+                        'width'     : 'auto',
+                        'height'    : 'auto',
+                    });
                 }
 
                 this.autoResize(true);
