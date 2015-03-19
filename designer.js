@@ -45,8 +45,6 @@
         'category':'Touch Events'
     });
 
-    Text.customizeProperty('value', { multiline: true });
-
     Text.addLabel({ defaultValue: '', description: 'Label for widget' });
 
     Text.setPanelStyle({
@@ -81,6 +79,8 @@
     Text.doAfter('init', function() {
         this._formatter = false;
         this.render();
+        this.initialized.hide();
+        this.initialized(true);
         showUrl.call(this);
         showValue.call(this);
         this.url.onChange(showUrl);
@@ -96,6 +96,7 @@
     Text.customizeProperty('url', {title: 'URL'});
     Text.customizeProperty('urlTarget', {title: 'Target'});
     Text.customizeProperty('autoResize', {title: 'Auto resize'});
+    Text.customizeProperty('value', { multiline: true });
 
     Text.studioOnResize(function(){
         this.autoResize(false);
