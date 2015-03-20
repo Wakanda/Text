@@ -2,16 +2,12 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
     "use strict";
 
     var Text = Widget.create('Text', {
-        initialized: Widget.property({
-            type: 'boolean',
-            description: 'Value to display',
-            visibility: 'hidden',
-            bindable: false
-        }),
         value: Widget.property({
             type: 'string',
             description: 'Value to display',
-            defaultValue: ''
+            defaultValueCallback: function(){
+                return this.plainText() ? this.node.textContent : this.node.innerHTML;
+            }
         }),
         _displayValue : null,
         displayValue : function(value){
@@ -177,9 +173,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             };
         },
         init: function() {
-            if(!this.initialized()){
-                this.value('Text');
-            }
             this._formatter = true;
             this.render();
             this.autoResizer();

@@ -76,13 +76,20 @@
         }
     }
     
+    function defaultValue(){
+        if(this.value() == ''){
+            $(this.node).append('<span class="waf-studio-donotsave">Text</span>');
+        }
+    }
+
     Text.doAfter('init', function() {
+        this.value.onChange(defaultValue);
+
         this._formatter = false;
         this.render();
-        this.initialized.hide();
-        this.initialized(true);
         showUrl.call(this);
         showValue.call(this);
+        defaultValue.call(this);
         this.url.onChange(showUrl);
         this.subscribe('datasourceBindingChange', 'url', showUrl, this);  
         this.subscribe('datasourceBindingChange','value', showValue, this);
