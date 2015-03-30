@@ -6,7 +6,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             type: 'string',
             description: 'Value to display',
             defaultValueCallback: function(){
-                return this.plainText() ? this.node.textContent : this.node.innerHTML;
+                return (this.plainText() && this._displayValue) ? this.node.textContent : this.node.innerHTML;
             }
         }),
         _displayValue : null,
