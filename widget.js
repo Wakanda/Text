@@ -21,12 +21,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             description: 'Format for the Value',
             bindable: false
         }),
-        autoResize: Widget.property({
-            type: 'boolean',
-            description: 'Automatically resize the widget',
-            defaultValue: true,
-            bindable: false
-        }),
         url: Widget.property({
             type: 'string',
             description: 'URL to include on Value'
@@ -114,35 +108,10 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             }else{
                 this.node.innerHTML = '<a href="'+this.url()+'" target="'+this.urlTarget()+'">'+value+'</a>';
             }
-            this.autoResizer();
         },
         clear: function(){
             this.value('');
             this.displayValue('');
-        },
-        autoResizer: function(){
-            if (this.autoResize()) {
-                this.style({
-                    'width'     : 'auto',
-                    'height'    : 'auto',
-                    'white-space': 'nowrap'
-                });
-                if(this.width() && this.height()){
-                    this.size(this.width(),this.height());
-                    this.style({
-                        'width'     : 'auto',
-                        'height'    : 'auto',
-                    });
-                }
-
-                this.autoResize(true);
-            }else{
-                this.style({
-                    'width'     : '',
-                    'height'    : '',
-                    'white-space': ''
-                });
-            }
         },
         setOverflow: function(){
             switch(this.scrollbar()){
@@ -175,7 +144,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         init: function() {
             this._formatter = true;
             this.render();
-            this.autoResizer();
             this.setOverflow();
 
             this.value.onChange(function(){ this.render(); });
@@ -183,7 +151,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             this.url.onChange(function(){ this.render(); });
             this.urlTarget.onChange(function(){ this.render(); });
             this.format.onChange(function(){ this.render(); });
-            this.autoResize.onChange(function(){ this.autoResizer(); });
             this.scrollbar.onChange(function(){ this.setOverflow(); });
         }
     });

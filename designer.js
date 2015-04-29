@@ -102,11 +102,6 @@
     Text.customizeProperty('plainText', {title: 'Plain text'});
     Text.customizeProperty('url', {title: 'URL'});
     Text.customizeProperty('urlTarget', {title: 'Target'});
-    Text.customizeProperty('autoResize', {title: 'Auto resize'});
     Text.customizeProperty('value', { multiline: true });
-
-    Text.studioOnResize(function(){
-        this.autoResize(false);
-    });
 
 });
