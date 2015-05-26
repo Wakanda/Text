@@ -71,7 +71,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
             }
         }, 
         getFormattedValue: function(value){
-            if(value == null) {
+            if(value === null) {
                 return '';
             }else if(this._formatter && !this.format()){
                 var bound = this.value.boundDatasource();
@@ -88,7 +88,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                 if (formatter in WAF.utils) {
                     value = WAF.utils[formatter](value, { format: this.format() });
                 }else{
-                    value = WAF.utils.formatString(value,this.format());
+                    value = WAF.utils.formatString(value, { format: this.format() });
                 }
             }
             return value;
@@ -96,9 +96,6 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
         render: function(value) {
             value = value || this.value();
             value = this.displayValue(this.getFormattedValue(value)); 
-            if(value == null){
-                value = '';
-            }
             if(!this.url()){
                 if(this.plainText()) {
                     this.node.textContent = value;
@@ -139,7 +136,7 @@ WAF.define('Text', ['waf-core/widget'], function(Widget) {
                     break;
                 default:
                     break;
-            };
+            }
         },
         init: function() {
             this._formatter = true;
